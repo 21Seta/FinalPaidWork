@@ -15,7 +15,10 @@ public class VouchersTest extends BaseTest {
 
         homePage.clickVoucher();
         vouchersPage.addVoucherInCart("seturidzegeorge3@gmail.com");
-        Assert.assertTrue(vouchersPage.checkViewBag());
+
+        Assert.assertTrue(vouchersPage.checkViewBag().contains("(1)"),
+                "The cart is empty , product not added : " + vouchersPage.checkViewBag());
+
         vouchersPage.openCartPage();
     }
 }

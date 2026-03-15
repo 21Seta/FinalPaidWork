@@ -14,16 +14,16 @@ public class WishListPage extends BasePage {
     @FindBy (xpath = "//div[@class='styled__DetailsNav-sc-1arg8l9-2 XOiWC']//span[@class='styles__FlexCenter-sc-1fbw3zu-7 hYgDch desk']")
     WebElement wishListBtn;
 
-    @FindBy(xpath = "//button[contains(@class,'account') and contains(@class,'glass-hover')]")
+    @FindBy(xpath = "//button[contains(@class, 'account')]")
     WebElement myAccount;
 
-    @FindBy (xpath = "//a[contains(.,'სურვილები') or contains(.,'Wishlist')]")
+    @FindBy (xpath = "//a[contains(@href, '/wishlist')]")
     WebElement wishesBtn;
 
     @FindBy (xpath = "//button[@class='remove']")
     WebElement wishesBtnForRemove ;
 
-    @FindBy(xpath = "//*[normalize-space()='Your private list is empty' or contains(normalize-space(), 'დახურულ სიაში პროდუქტები არ გაქვს')]")
+    @FindBy(xpath = "//div[contains(@class, 'content')]/h2")
     WebElement wishesListEmpty;
 
 

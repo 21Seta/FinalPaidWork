@@ -10,7 +10,7 @@ public class VouchersPage extends BasePage {
 
 
 
-    @FindBy(xpath = "//a[contains(@class,'product-img-link')]//img[contains(@alt,'500')]")
+    @FindBy(xpath = "(//a[contains(@href, 'VOUCHER-0500')])[1]")
     WebElement takeVoucher;
 
     @FindBy(id = "dg-email")
@@ -19,10 +19,10 @@ public class VouchersPage extends BasePage {
     @FindBy(id = "cart-button-z")
     WebElement addToCart;
 
-    @FindBy(xpath = "//span[@class='icon']//span[@class='styles__FlexCenter-sc-1fbw3zu-7 hYgDch'][normalize-space()='1']")
+    @FindBy(id = "cart-button")
     WebElement openCart;
 
-    @FindBy(id = "cart-button")
+    @FindBy(xpath = "//a[contains(@class,'cart')]")
     WebElement viewBag;
 
     @FindBy(xpath = "//a[contains(@class,'cart')]")
@@ -35,8 +35,10 @@ public class VouchersPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean checkViewBag(){
-        return viewBag.isDisplayed();
+    public String checkViewBag(){
+        waitForElementToBeClickable(viewBag);
+        return viewBag.getText();
+
     }
     public void addVoucherInCart(String email){
 

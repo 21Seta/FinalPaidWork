@@ -27,8 +27,12 @@ public class WishListTest extends BaseTest {
     public void deleteProductWishList() {
         LoginPage loginPage = new LoginPage(driver);
         WishListPage wishListPage = new WishListPage(driver);
+
+        // Login
         loginPage.login("seturidzegeorge3@gmail.com" , "Giviko21");
+        // Add Product Wish list
         wishListPage.AddProductsWishList();
+        // Delete Product wish list
         wishListPage.deleteProductsWishList();
 
         //Check

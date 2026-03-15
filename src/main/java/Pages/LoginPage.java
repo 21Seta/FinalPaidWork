@@ -9,19 +9,24 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage extends BasePage {
 
     // Elements
-    @FindBy(xpath = "//button[contains(text(),'Log') or contains(text(),'შეს')]" )
+    @FindBy(xpath = "//button[contains(@class, 'account')]" )
     WebElement openLoginField;
     @FindBy(id = "sigin-email")
     WebElement userNameField ;
     @FindBy(id = "signin-password")
     WebElement passwordField;
-    @FindBy(xpath = "//button[@class='styled__AuthPrimaryBtn-mh0716-2 dCwCil']")
+    @FindBy(xpath = "//button[@type='submit']")
     WebElement loginBtn;
 
     //Constructor
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver , this);
+    }
+    //
+    public boolean isUserLoggedIn(){
+        waitForVisibility(openLoginField);
+        return openLoginField.isDisplayed();
     }
     //Login
     public void login(String userName, String password) {

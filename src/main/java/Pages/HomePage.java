@@ -10,16 +10,16 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage extends BasePage {
 
 
-    @FindBy(xpath = "//button[contains(@class,'account') and contains(@class,'glass-hover')]")
+    @FindBy(xpath = "//button[contains(@class, 'account')]")
     WebElement myAccount;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'ეძებ') or contains(@placeholder,'Search')]")
+    @FindBy(xpath = "//form[contains(@class, 'SearchForm')]//input")
     WebElement searchField;
 
-    @FindBy(xpath = "//button[@class='link']//div[@class='title'][contains(text(),'Bang & Olufsen Beoplay H95 Ferrari Edition Over-Ea')]")
+    @FindBy(xpath = "//div[contains(text(), 'H95 Ferrari Edition')]")
     WebElement takeProduct;
 
-    @FindBy(xpath = "//div[@class='swiper-slide swiper-slide-active']//a[@class='category']")
+    @FindBy(xpath = "//div[contains(@class, 'swiper-slide-active')]//a")
     WebElement vouchers;
 
     @FindBy(xpath = "//button[contains(text(),'გამოსვლა') or contains(text(),'Log out')]")

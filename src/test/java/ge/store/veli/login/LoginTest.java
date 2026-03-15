@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest {
 
         loginPage.login("seturidzegeorge3@gmail.com", "Giviko21");
 
-        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'account')]")).isDisplayed());
+        Assert.assertTrue(loginPage.isUserLoggedIn(), "Login failed!");
     }
 
 }

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class InventoryPage extends BasePage {
+public class HomePage extends BasePage {
 
 
     @FindBy(xpath = "//button[contains(@class,'account') and contains(@class,'glass-hover')]")
@@ -31,7 +31,7 @@ public class InventoryPage extends BasePage {
     @FindBy(xpath = "//button[contains(@class, 'account') and (contains(., 'Log in') or contains(., 'შესვლა'))]")
     WebElement loginBtnAfterLogOut;
 
-    public InventoryPage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
 

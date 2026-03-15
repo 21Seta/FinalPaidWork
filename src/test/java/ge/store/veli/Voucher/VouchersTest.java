@@ -1,19 +1,21 @@
-package ge.store.veli.Cart;
+package ge.store.veli.Voucher;
 
-import Pages.InventoryPage;
+import Pages.HomePage;
 import Pages.VouchersPage;
 import ge.store.veli.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class VouchersTest extends BaseTest {
 
     @Test
-    public void addProductInCart(){
-        VouchersPage cartPage = new VouchersPage(driver);
-        InventoryPage inventoryPage = new InventoryPage(driver);
+    public void addVouchersInCart(){
+        VouchersPage vouchersPage = new VouchersPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        inventoryPage.clickVoucher();
-
-        cartPage.addVoucherInCart("seturidzegeorge3@gmail.com");
+        homePage.clickVoucher();
+        vouchersPage.addVoucherInCart("seturidzegeorge3@gmail.com");
+        Assert.assertTrue(vouchersPage.checkViewBag());
+        vouchersPage.openCartPage();
     }
 }

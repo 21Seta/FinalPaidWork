@@ -1,4 +1,4 @@
-package Pages;
+package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -28,20 +28,27 @@ public class VouchersPage extends BasePage {
     @FindBy(xpath = "//a[contains(@class,'cart')]")
     WebElement openCartPage;
 
+    @FindBy(xpath = "//div[contains(@class, 'CartTop')]//h2")
+    WebElement IfVoucherIsAddedInCartPage;
+
 
 
     public VouchersPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    public String checkViewBag(){
+    // Check if Voucher added cart drop down menu
+    public String ifVoucherAddedCartDropDownMenu(){
         waitForElementToBeClickable(viewBag);
         return viewBag.getText();
-
+    }
+    // Check if voucher is added in cart page
+    public String  ifVoucherIsAddedInCartPage(){
+        waitForElementToBeClickable(IfVoucherIsAddedInCartPage);
+        return IfVoucherIsAddedInCartPage.getText();
     }
     public void addVoucherInCart(String email){
-
+        closePopUpIfVisible();
         waitForElementToBeClickable(takeVoucher);
         click(takeVoucher);
         waitForVisibility(voucherEmailField);

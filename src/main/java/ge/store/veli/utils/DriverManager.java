@@ -1,4 +1,4 @@
-package utils;
+package ge.store.veli.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

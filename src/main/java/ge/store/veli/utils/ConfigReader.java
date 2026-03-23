@@ -1,4 +1,4 @@
-package utils;
+package ge.store.veli.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

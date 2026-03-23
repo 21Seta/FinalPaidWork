@@ -1,14 +1,14 @@
 package ge.store.veli.login;
 
-import Pages.LoginPage;
+import ge.store.veli.BasePage;
+import ge.store.veli.Pages.LoginPage;
 import ge.store.veli.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
 
-// Ჩემი Ველი
+
 public class LoginTest extends BaseTest {
 
     @Test
@@ -18,7 +18,9 @@ public class LoginTest extends BaseTest {
 
         loginPage.login("seturidzegeorge3@gmail.com", "Giviko21");
 
-        Assert.assertTrue(loginPage.isUserLoggedIn(), "Login failed!");
+        Assert.assertTrue(loginPage.isUserLoggedIn().equals("Ჩემი Ველი") ||
+                                   loginPage.isUserLoggedIn().equals("My Account"),
+                "Error: Login failed! Actual button text is: " + loginPage.isUserLoggedIn());
     }
 
 }

@@ -1,0 +1,37 @@
+<suite name="veliStoreCases">
+
+    <listeners>
+        <listener class-name="ge.store.veli.utils.TestListener"/>
+    </listeners>
+
+    <test name="Login test">
+        <classes>
+            <class name="ge.store.veli.login.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Home Test">
+        <classes>
+            <class name="ge.store.veli.Home.HomeTest"/>
+        </classes>
+    </test>
+
+    <test name="Vouchers test">
+        <classes>
+            <class name="ge.store.veli.Voucher.VouchersTest"/>
+        </classes>
+    </test>
+
+    <test name="WishList test">
+        <classes>
+            <class name="ge.store.veli.WishList.WishListTest"/>
+        </classes>
+    </test>
+
+    <test name="Cart test">
+        <classes>
+            <class name="ge.store.veli.Cart.CartTest"/>
+        </classes>
+    </test>
+
+</suite>

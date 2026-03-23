@@ -1,4 +1,4 @@
-package Pages;
+package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage extends BasePage {
 
 
-    @FindBy(xpath = "//button[contains(@class, 'account')]")
+    @FindBy(xpath = "//button[contains(@class,'account') and contains(@class,'glass-hover')]")
     WebElement myAccount;
 
     @FindBy(xpath = "//form[contains(@class, 'SearchForm')]//input")
@@ -22,10 +22,10 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[contains(@class, 'swiper-slide-active')]//a")
     WebElement vouchers;
 
-    @FindBy(xpath = "//button[contains(text(),'გამოსვლა') or contains(text(),'Log out')]")
+    @FindBy(xpath = "//button[@class='logout']")
     WebElement logoutBtn;
 
-    @FindBy(xpath = "//button[contains(text(), 'დიახ') or contains(text(), 'Confirm')]")
+    @FindBy(xpath = "//button[@class='accept']")
     WebElement confirmBtn;
 
     @FindBy(xpath = "//button[contains(@class, 'account') and (contains(., 'Log in') or contains(., 'შესვლა'))]")
@@ -44,7 +44,7 @@ public class HomePage extends BasePage {
     }
 
     public void searchProduct(String productName) {
-
+        closePopUpIfVisible();
         click(searchField);
         waitForVisibility(searchField);
         searchField.clear();
@@ -53,13 +53,15 @@ public class HomePage extends BasePage {
         waitUrlContains("bang-olufsen-beoplay-h95-ferrari-edition-over");
 
     }
-
+    // click voucher and transit to vouchers Page
     public void clickVoucher() {
         click(vouchers);
     }
 
     public void logOut() {
+        closePopUpIfVisible();
         click(myAccount);
+        waitForVisibility(logoutBtn);
         click(logoutBtn);
         waitForVisibility(confirmBtn);
         click(confirmBtn);

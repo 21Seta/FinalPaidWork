@@ -1,8 +1,8 @@
-package ge.store.veli.Inventory;
+package ge.store.veli.Home;
 
 
-import Pages.HomePage;
-import Pages.LoginPage;
+import ge.store.veli.Pages.HomePage;
+import ge.store.veli.Pages.LoginPage;
 import ge.store.veli.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,7 +15,8 @@ public class HomeTest extends BaseTest {
 
         homePage.searchProduct("Bang & Olufsen Beoplay H95 Ferrari Edition Wireless Headphones");
 
-        Assert.assertTrue(driver.getCurrentUrl().contains("bang-olufsen-beoplay-h95-ferrari-edition-over"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("bang-olufsen-beoplay-h95-ferrari-edition-over"),
+        "Error : Product is not searched");
 
     }
 
@@ -28,8 +29,8 @@ public class HomeTest extends BaseTest {
 
         homePage.logOut();
 
-        String actualText = homePage.getLoginBtnTextAfterLogOut().trim().toLowerCase();
-        Assert.assertTrue(actualText.contains("log") || actualText.contains("შეს"),
-                "Logout failed! Actual text: " + actualText);
+        Assert.assertTrue(homePage.getLoginBtnTextAfterLogOut().equals("Შესვლა") ||
+                                   homePage.getLoginBtnTextAfterLogOut().equals("Log In"),
+                "Error: Login failed! Actual text: " + homePage.getLoginBtnTextAfterLogOut());
     }
 }

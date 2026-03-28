@@ -102,7 +102,7 @@ public class BasePage {
     public void sendKeys (WebElement locator , String text){
         waitForVisibility(locator);
         locator.sendKeys(text);
-        Utils.logInfo(text);
+        Utils.logInfo("Text was entered in input field : " + text);
     }
 
     /**

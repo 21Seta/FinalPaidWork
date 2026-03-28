@@ -1,13 +1,11 @@
 package ge.store.veli;
 
-
 import ge.store.veli.utils.Utils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ge.store.veli.utils.ConfigReader;
-
 import java.time.Duration;
 
 
@@ -21,67 +19,98 @@ public class BasePage {
         this.wait = new WebDriverWait(driver , Duration.ofSeconds(ConfigReader.getLong("wait")));
         PageFactory.initElements(driver , this);
     }
-    // getText
+
+    /**
+     * აბრუნებს ხილული ელემენტის ტექსტს
+     * @param locator ელემენტი საიდანაც ვიღებთ ტექსტს
+     * @return ელემენტის ტექსტი
+     */
     public String getText(WebElement locator){
         waitForVisibility(locator);
-        Utils.logInfo("get text from : " + locator.getText());
         return locator.getText();
-
     }
-    // Click
-    public void click(WebElement locator) {
-        waitForElementToBeClickable(locator); // 1. ჯერ დავიცადოთ
 
-        // 2. ავიღოთ ტექსტი, სანამ ელემენტი "ცოცხალია"
+    /**
+     * ამოწმებს ელემენტი ჩანს თუ არა
+     * @param locator სამიზნე ელემენტი
+     * @return True თუ ელემენტი ჩანს
+     */
+    public boolean isDisplayed(WebElement locator){
+        waitForVisibility(locator);
+        boolean isVisible = locator.isDisplayed();
+        return isVisible;
+    }
+
+    /**
+     * ელოდება ელემენტის დაკლიკებადობას და აკლიკებს მას
+     * @param locator სამიზნე ელემენტი
+     */
+    public void click(WebElement locator) {
+        waitForElementToBeClickable(locator);
+
         String text = locator.getText();
         if (text == null || text.isEmpty()) {
             text = locator.getAttribute("textContent");
         }
+        locator.click();
 
-        locator.click(); // 3. დავაკლიკოთ
-
-        // 4. გავაგზავნოთ რეპორტში
         Utils.logInfo("Clicked on element: " + text);
     }
-    // Wait For Visible
+
+    /**
+     * ელოდება სანამ ელემენტი ხილული გახდება
+     * @param locator სამიზნე ელემენტი
+     */
     public void waitForVisibility(WebElement locator) {
        wait.until(ExpectedConditions.visibilityOf(locator));
 
     }
-    //Wait For Element To Be Clickable
+
+    /**
+     * ელოდება სანამ ელემენტი დაკლიკებადი გახდება
+     * @param locator სამიზნე ელემენტი
+     */
     public void waitForElementToBeClickable(WebElement locator){
        wait.until(ExpectedConditions.elementToBeClickable(locator));
 
     }
-    // Wait For Url
-    public void waitForUrlToBe(String urlPart){
-        wait.until(ExpectedConditions.urlContains(urlPart));
 
-    }
-    // Wait Url Contains
+    /**
+     * ელოდება სანამ მიმდინარე URL მითითებულ ტექსტს შეიცავს
+     * @param url URL -ის მოსალოდნელი ნაწილი
+     */
     public void waitUrlContains(String url){
         wait.until(ExpectedConditions.urlContains(url));
 
     }
-    // Wait For Element to disappear
-    public void waitForElementToDisappear(WebElement element){
-        wait.until(ExpectedConditions.invisibilityOf(element));
 
-    }
-    //Clear
+    /**
+     * ასუფთავებს input ველს
+     * @param locator
+     */
     public void clear (WebElement locator){
         waitForVisibility(locator);
         locator.clear();
 
     }
+
+    /**
+     * წერს ტექსტს input ველში
+     * @param locator
+     * @param text
+     */
     public void sendKeys (WebElement locator , String text){
         waitForVisibility(locator);
         locator.sendKeys(text);
-        Utils.logInfo("send key was: " + text);
+        Utils.logInfo(text);
     }
-    // Method to close Black Friday pop up
+
+    /**
+     * ხურავს popup-ს თუ ის გვერდზე გამოჩნდა
+     */
     public void closePopUpIfVisible() {
         try {
+            //Switch to popup iframe
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
             WebElement iframe = shortWait.until(ExpectedConditions.presenceOfElementLocated(
                     By.xpath("//iframe[@data-test-id='interactive-frame']")));
@@ -91,9 +120,8 @@ public class BasePage {
             WebElement closeBtn = driver.findElement(By.id("interactive-close-button"));
             closeBtn.click();
 
-            System.out.println("Pop-up closed successfully.");
         } catch (Exception e) {
-
+            // Do nothing if popup is not found
         } finally {
             driver.switchTo().defaultContent();
         }

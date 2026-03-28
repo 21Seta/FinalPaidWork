@@ -1,6 +1,7 @@
 package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
+import ge.store.veli.utils.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,18 +26,18 @@ public class LoginPage extends BasePage {
     WebElement checkIsUserLoggedIn;
 
 
-    //Constructor
+    // Constructor
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver , this);
     }
-    //
+    // Returns account button text to verify successfull login
     public String isUserLoggedIn(){
-        waitForVisibility(checkIsUserLoggedIn);
-        return checkIsUserLoggedIn.getText();
+        return getText(checkIsUserLoggedIn);
     }
-    //Login
+    // Login
     public void login(String userName, String password) {
+        Utils.logInfo("Start login " + userName);
         closePopUpIfVisible();
         click(openLoginField);
         waitForVisibility(userNameField);

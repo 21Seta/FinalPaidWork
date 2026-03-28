@@ -1,6 +1,7 @@
 package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
+import ge.store.veli.utils.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,28 +38,30 @@ public class HomePage extends BasePage {
 
     }
 
-    // Method to Check Login Button text For assertion in inventory Page.
     public String getLoginBtnTextAfterLogOut() {
-        waitForVisibility(loginBtnAfterLogOut);
-        return loginBtnAfterLogOut.getText();
+        return getText(loginBtnAfterLogOut);
     }
 
     public void searchProduct(String productName) {
+        Utils.logInfo("Start searching product: " + productName);
         closePopUpIfVisible();
         click(searchField);
         waitForVisibility(searchField);
-        searchField.clear();
-        searchField.sendKeys(productName);
+        clear(searchField);
+        sendKeys(searchField, productName);
         click(takeProduct);
         waitUrlContains("bang-olufsen-beoplay-h95-ferrari-edition-over");
 
     }
-    // click voucher and transit to vouchers Page
+
+
     public void clickVoucher() {
+        Utils.logInfo("Click voucher to transit vouchers page");
         click(vouchers);
     }
 
     public void logOut() {
+        Utils.logInfo("Start log out");
         closePopUpIfVisible();
         click(myAccount);
         waitForVisibility(logoutBtn);

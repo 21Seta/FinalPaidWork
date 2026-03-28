@@ -25,27 +25,23 @@ public class TestListener implements ITestListener {
 
         @Override
         public void onTestSuccess(ITestResult result) {
-            ExtentReportManager.getTest().pass("Test Passed: " + result.getName());
             System.out.println("Test Passed: " + result.getName());
-
+            Utils.logPass("Test Passed: " + result.getName());
         }
 
     @Override
     public void onTestFailure(ITestResult result) {
         String testName = result.getName();
+        WebDriver driver = DriverManager.getDriver();
 
-        // 1. ფიზიკური შენახვის მისამართი (სრული პათი)
         String screenshotName = testName + ".png";
         String directory = System.getProperty("user.dir") + "/report/screenshots/";
         String fullPath = directory + screenshotName;
 
         String relativePath = "screenshots/" + screenshotName;
-
-        WebDriver driver = DriverManager.getDriver();
         File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
         try {
-
             new File(directory).mkdirs();
 
             FileUtils.copyFile(screenshot, new File(fullPath));

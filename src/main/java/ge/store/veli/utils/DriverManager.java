@@ -8,7 +8,11 @@ public class DriverManager {
 
     private static WebDriver driver;
 
-    // Start chrome driver (Open browser)
+    /**
+     * ქმნის ChromeDriver-ს
+     *
+     * @return მიმდინარე WebDriver
+     */
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
@@ -16,7 +20,10 @@ public class DriverManager {
         }
         return driver;
     }
-    // Quit (quit browser)
+
+    /**
+     * ხურავს ბრაუზერს
+     */
     public static void  quit(){
         if (driver != null){
             driver.quit();

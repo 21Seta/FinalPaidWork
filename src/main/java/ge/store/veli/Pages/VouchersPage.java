@@ -1,6 +1,7 @@
 package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
+import ge.store.veli.utils.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,17 +38,16 @@ public class VouchersPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    // Check if Voucher added cart drop down menu
+
     public String ifVoucherAddedCartDropDownMenu(){
-        waitForElementToBeClickable(viewBag);
-        return viewBag.getText();
+        return getText(viewBag);
     }
-    // Check if voucher is added in cart page
-    public String  ifVoucherIsAddedInCartPage(){
-        waitForElementToBeClickable(IfVoucherIsAddedInCartPage);
-        return IfVoucherIsAddedInCartPage.getText();
+
+    public String ifVoucherIsAddedInCartPage(){
+        return getText(IfVoucherIsAddedInCartPage);
     }
     public void addVoucherInCart(String email){
+        Utils.logInfo("Adding voucher in cart page");
         closePopUpIfVisible();
         waitForElementToBeClickable(takeVoucher);
         click(takeVoucher);
@@ -58,6 +58,7 @@ public class VouchersPage extends BasePage {
         click(openCart);
     }
     public void openCartPage(){
+        Utils.logInfo("Transited on cart page");
         click(openCartPage);
     }
 }

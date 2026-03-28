@@ -1,6 +1,7 @@
 package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
+import ge.store.veli.utils.Utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,18 +39,17 @@ public class CartPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver,this);
     }
-    // Check if product is added in cart with product price getText();
+    // Returns added product price from cart page
     public String checkProductIsAddedInCart(){
-        waitForVisibility(productPriceGetText);
-        return productPriceGetText.getText();
+        return getText(productPriceGetText);
     }
-    // Empty Box image , if its visible product is deleted from cart "Method for assertion"
+    // Return Empty Box image , if its visible product is deleted
     public boolean checkIfCartIsEmpty(){
         closePopUpIfVisible();
-        waitForVisibility(emptyBoxImg);
-        return emptyBoxImg.isDisplayed();
+        return isDisplayed(emptyBoxImg);
     }
     public void addProductInCart(){
+        Utils.logInfo("Add product in cart page");
         closePopUpIfVisible();
         waitForVisibility(djiStabilizer);
         click(djiStabilizer);
@@ -58,10 +58,10 @@ public class CartPage extends BasePage {
         click(viewBag);
     }
     public void deleteProductFromCart(){
+        Utils.logInfo("Deleting product from cart page");
         closePopUpIfVisible();
         click(btnDelete);
         waitForVisibility(btnDeleteImmediately);
         click(btnDeleteImmediately);
-
     }
 }

@@ -1,9 +1,6 @@
 package ge.store.veli;
 
 import ge.store.veli.utils.Utils;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -11,13 +8,13 @@ import org.testng.annotations.BeforeMethod;
 import ge.store.veli.utils.ConfigReader;
 import ge.store.veli.utils.DriverManager;
 
-import java.io.File;
-import java.io.IOException;
-
 
 public class BaseTest {
     protected WebDriver driver ;
 
+    /**
+     * ხსნის ბრაუზერს დაგადადის base URL-ზე ყოველი ტესტის წინ
+     */
     @BeforeMethod
     public void setup(){
        driver = DriverManager.getDriver();
@@ -26,17 +23,25 @@ public class BaseTest {
        Utils.logInfo("URL: " + ConfigReader.get("base.url"));
     }
 
+    /**
+     * ხურავს ბრაუზერს ყოველი ტესტის შემდგომ
+     */
     @AfterMethod
     public void tearDown(){
         DriverManager.quit();
     }
 
+    /**
+     * ადარებს actual და expected მნიშვნელობებს
+     * @param act ახლანდელი მნიშვნელობა
+     * @param exp მოსალოდნელიმნიშვნელობა
+     */
     public void assertString(String act , String exp){
         Assert.assertEquals(act , exp , "isn't same");
-        Utils.logInfo("+ASSERTION+ :  act : " + act + " and exp : " + exp);
+        Utils.logInfo("+ASSERTION+ :  act is : " + act + " and exp is : " + exp);
+        Utils.logPass("Assertion passed successfully");
+
+
     }
-
-    }
-
-
+}
 

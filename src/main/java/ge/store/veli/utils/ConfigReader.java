@@ -8,7 +8,11 @@ import java.util.Properties;
 
     public class ConfigReader {
 
-
+        /**
+         * კითხულობს მნიშვნელობას config.properties ფაილიდან .
+         * @param key კონფიგურაციის ველის სახელი
+         * @return ფაილში შენახეული მნიშვნელობა
+         */
         private static String read(String key){
             Properties properties = new Properties();
             try {
@@ -19,12 +23,21 @@ import java.util.Properties;
             }
             return properties.getProperty(key);
         }
-
-
+        /**
+         * აბრუნებს კონფიგურაციის მნიშვნელობას String ტიპში
+         *
+         * @param key კონფიგურაციის ველის სახელი
+         * @return კონფიგურაციის მნიშვნელობა
+         */
         public static String get(String key) {
             return read(key);
         }
-
+        /**
+         * აბრუნებს კონფიგურაციის მნიშვნელობას Long ტიპში
+         *
+         * @param key კონფიგურაციის ველის სახელი
+         * @return კონფიგურაციის მნიშვნელობა რიცხვად
+         */
         public static Long getLong(String key){
             return Long.parseLong(read(key));
         }

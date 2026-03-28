@@ -1,6 +1,7 @@
 package ge.store.veli.Pages;
 
 import ge.store.veli.BasePage;
+import ge.store.veli.utils.Utils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,13 +30,13 @@ public class WishListPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    // Method to check if product image is visible in wishlist page
+    // Checks if selected product is displayed on wishlist page
     public boolean isDjiStabilizerVisible() {
-        waitForVisibility(djiStabilizerImageCheck);
-        return djiStabilizerImageCheck.isDisplayed();
+        return isDisplayed(djiStabilizerImageCheck);
     }
 
-    public void AddProductsWishList(){
+    public void addProductsWishList(){
+        Utils.logInfo("Adding products wish list page");
         closePopUpIfVisible();
         waitForVisibility(djiStabilizer);
         click(djiStabilizer);

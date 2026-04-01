@@ -35,7 +35,6 @@ public class CartTest extends BaseTest {
         cartPage.addProductInCart();
 
         assertString(cartPage.getAddedProductPrice() , "449.00 ₾");
-        Utils.logPass("Product was successfully added cart page");
     }
     @Test
     public void deleteProductFromCart() {

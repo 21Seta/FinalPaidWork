@@ -10,7 +10,10 @@ public class ExtentReportManager {
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();// ThreadLocal for parallel execution
 
-
+    /**
+     * ქმნის Extent Report-ს და აწყობს მის ძირიტად პარამეტრებს
+     * @return ExtentReport ობიექტი
+     */
     public static ExtentReports getExtentReports() {
         if (extent == null) {
             String reportPath = System.getProperty("user.dir") + "/report/ExtentReport.html";
@@ -26,16 +29,28 @@ public class ExtentReportManager {
         return extent;
     }
 
+    /**
+     * ქმნის ახალ ტესტს რეპორტში
+     * @param testName ტესტის სახელი
+     * @return შექმნილი ExtentTest ობიექტი
+     */
     public static ExtentTest createTest(String testName) {
         ExtentTest extentTest = getExtentReports().createTest(testName);
         test.set(extentTest);
         return extentTest;
     }
 
+    /**
+     * აბრუნებს მიმდინარე ტესტს
+     * @return მიმდინარე ExtentTest
+     */
     public static ExtentTest getTest() {
         return test.get();
     }
 
+    /**
+     * რეპორტის დასრულება
+     */
     public static void flushReports() {
         if (extent != null) {
             extent.flush();

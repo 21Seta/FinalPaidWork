@@ -18,7 +18,6 @@ public class ApiManager {
      * @return API-ის სრული პასუხი
      */
     public Response get(String endPoint , Map<String, String> headers) {
-
         return   given()
                 .headers(headers)
                 .log().all()
@@ -38,7 +37,6 @@ public class ApiManager {
      * @return API-ის სრული პასუხი
      */
     public Response getWithQueryParam(String endPoint , Map<String, Object> queryParams) {
-
         return  given()
                 .queryParams(queryParams)
                 .log().all()

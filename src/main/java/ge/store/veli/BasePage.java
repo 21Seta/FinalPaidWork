@@ -58,7 +58,9 @@ public class BasePage {
         if (text == null || text.isEmpty()) {
             text = locator.getAttribute("title");
         }
-
+        if (text == null || text.isEmpty()) {
+            text = "element without visible text";
+        }
         locator.click();
 
         Utils.logInfo("Clicked on element: " + text);
@@ -93,7 +95,7 @@ public class BasePage {
 
     /**
      * ასუფთავებს input ველს
-     * @param locator
+     * @param locator სამინზე ელემენტი
      */
     public void clear (WebElement locator){
         waitForVisibility(locator);
@@ -103,8 +105,8 @@ public class BasePage {
 
     /**
      * წერს ტექსტს input ველში
-     * @param locator
-     * @param text
+     * @param locator სამინზე ელემენტი
+     * @param text ველში შესაყვანი ტექსტი
      */
     public void sendKeys (WebElement locator , String text , String fieldName){
         waitForVisibility(locator);
@@ -114,10 +116,11 @@ public class BasePage {
 
     /**
      * ხურავს popup-ს თუ ის გვერდზე გამოჩნდა
+     * მეთოდი ჯერ popup iframe-ს ეძებს , შემდეგ გადადის მასში
+     * და აკლიკებს დახურვის ღილაკს
      */
     public void closePopUpIfVisible() {
         try {
-            //Switch to popup iframe
             WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
             WebElement iframe = shortWait.until(ExpectedConditions.presenceOfElementLocated(
                     By.xpath("//iframe[@data-test-id='interactive-frame']")));
@@ -128,12 +131,12 @@ public class BasePage {
             closeBtn.click();
 
         } catch (Exception e) {
-            // Do nothing if popup is not found
+
         } finally {
             driver.switchTo().defaultContent();
         }
     }
-        }
+}
 
 
 

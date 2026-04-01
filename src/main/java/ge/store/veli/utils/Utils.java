@@ -33,7 +33,7 @@ public class Utils {
         }
     }
     /**
-     * ამატებს წარმატებლობის მესიჯს და screenshot-ს
+     * ამატებს წარმატებლობის მესიჯს და screenshot-ს ExtentReport-ში
      *
      * @param message წარუმატებლობის მოკლე აღწერა
      * @param driver მიმდინარე WebDriver

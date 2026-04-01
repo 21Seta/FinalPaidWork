@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void testValidLogin() {
+    public void validLogin() {
 
         LoginPage loginPage = new LoginPage(driver);
 

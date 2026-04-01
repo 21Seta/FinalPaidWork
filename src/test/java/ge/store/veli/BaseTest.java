@@ -14,14 +14,13 @@ public class BaseTest {
     protected WebDriver driver ;
 
     /**
-     * ხსნის ბრაუზერს დაგადადის base URL-ზე ყოველი ტესტის წინ
+     * ხსნის ბრაუზერს და გადადის base URL-ზე ყოველი ტესტის წინ
      */
     @BeforeMethod
     public void setup(){
        driver = DriverManager.getDriver();
        driver.manage().window().maximize();
        driver.get(ConfigReader.get("base.url"));
-       Utils.logInfo("URL: " + ConfigReader.get("base.url"));
     }
 
     /**
@@ -40,7 +39,6 @@ public class BaseTest {
     public void assertString(String act , String exp){
         Assert.assertEquals(act , exp , "Actual and expected strings don't match");
         Utils.logInfo("+ASSERTION+ :  act is : " + act + " and exp is : " + exp);
-        Utils.logPass("Assertion passed successfully");
     }
 
     }

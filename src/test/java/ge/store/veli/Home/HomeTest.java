@@ -4,6 +4,7 @@ package ge.store.veli.Home;
 import ge.store.veli.Pages.HomePage;
 import ge.store.veli.Pages.LoginPage;
 import ge.store.veli.BaseTest;
+import ge.store.veli.utils.ConfigReader;
 import ge.store.veli.utils.Utils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -16,10 +17,8 @@ public class HomeTest extends BaseTest {
 
         homePage.searchProduct("Bang & Olufsen Beoplay H95 Ferrari Edition Wireless Headphones");
 
-
         Assert.assertTrue(driver.getCurrentUrl().contains("bang-olufsen-beoplay-h95-ferrari-edition-over"),
         "Error : Product is not searched");
-        Utils.logInfo("Product searched successfully");
 
     }
 
@@ -28,7 +27,7 @@ public class HomeTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        loginPage.login("seturidzegeorge3@gmail.com", "Giviko21");
+        loginPage.login(ConfigReader.get("ui.user.email"), ConfigReader.get("ui.user.password"));
 
         homePage.logOut();
 

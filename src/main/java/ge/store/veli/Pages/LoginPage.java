@@ -9,12 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
 
-    // Elements
+
     @FindBy(xpath = "//button[contains(@class, 'account')]" )
     WebElement openLoginField;
 
     @FindBy(id = "sigin-email")
-    WebElement userNameField ;
+    WebElement emailField ;
 
     @FindBy(id = "signin-password")
     WebElement passwordField;
@@ -23,26 +23,26 @@ public class LoginPage extends BasePage {
     WebElement loginBtn;
 
     @FindBy(xpath = "//button[contains(@class, 'account') and (contains(., 'ჩემი ველი') or contains(., 'My account'))]")
-    WebElement checkIsUserLoggedIn;
+    WebElement checkIfUserLoggedIn;
 
 
-    // Constructor
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver , this);
     }
-    // Returns account button text to verify successfull login
-    public String isUserLoggedIn(){
-        return getText(checkIsUserLoggedIn);
+
+    public String getMyAccountBtnText(){
+        return getText(checkIfUserLoggedIn);
     }
-    // Login
-    public void login(String userName, String password) {
-        Utils.logInfo("Start login " + userName);
+
+    public void login(String email, String password) {
+        Utils.logInfo("Starting login");
         closePopUpIfVisible();
         click(openLoginField);
-        waitForVisibility(userNameField);
-        sendKeys(userNameField,userName);
-        sendKeys(passwordField,password);
+        waitForVisibility(emailField);
+        sendKeys(emailField,email ,"email");
+        sendKeys(passwordField,password , "password");
         click(loginBtn);
 
     }

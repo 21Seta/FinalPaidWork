@@ -52,6 +52,13 @@ public class BasePage {
         if (text == null || text.isEmpty()) {
             text = locator.getAttribute("textContent");
         }
+        if (text == null || text.isEmpty()) {
+            text = locator.getAttribute("alt");
+        }
+        if (text == null || text.isEmpty()) {
+            text = locator.getAttribute("title");
+        }
+
         locator.click();
 
         Utils.logInfo("Clicked on element: " + text);
@@ -99,10 +106,10 @@ public class BasePage {
      * @param locator
      * @param text
      */
-    public void sendKeys (WebElement locator , String text){
+    public void sendKeys (WebElement locator , String text , String fieldName){
         waitForVisibility(locator);
         locator.sendKeys(text);
-        Utils.logInfo("Text was entered in input field : " + text);
+        Utils.logInfo(fieldName + ": " + text);
     }
 
     /**

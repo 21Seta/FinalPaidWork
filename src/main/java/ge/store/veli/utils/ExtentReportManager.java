@@ -10,7 +10,7 @@ public class ExtentReportManager {
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();// ThreadLocal for parallel execution
 
-    // Initialize ExtentReports
+
     public static ExtentReports getExtentReports() {
         if (extent == null) {
             String reportPath = System.getProperty("user.dir") + "/report/ExtentReport.html";
@@ -26,19 +26,16 @@ public class ExtentReportManager {
         return extent;
     }
 
-    // Create a test
     public static ExtentTest createTest(String testName) {
         ExtentTest extentTest = getExtentReports().createTest(testName);
         test.set(extentTest);
         return extentTest;
     }
 
-    // Get the current test
     public static ExtentTest getTest() {
         return test.get();
     }
 
-    // Flush reports
     public static void flushReports() {
         if (extent != null) {
             extent.flush();

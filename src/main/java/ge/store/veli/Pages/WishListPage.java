@@ -14,13 +14,13 @@ public class WishListPage extends BasePage {
     WebElement djiStabilizer;
 
     @FindBy (xpath = "//button[contains(@class, 'wishlist')]")
-    WebElement wishListBtn;
+    WebElement addToWishListBtn;
 
     @FindBy(xpath = "//button[contains(@class, 'account')]")
-    WebElement myAccount;
+    WebElement myAccountBtn;
 
     @FindBy (xpath = "//a[contains(.,'სურვილები') or contains(.,'Wishlist')]")
-    WebElement wishesBtn;
+    WebElement openWishListPage;
 
     @FindBy(xpath = "//div[@class='hero']")
     WebElement djiStabilizerImageCheck;
@@ -30,19 +30,19 @@ public class WishListPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    // Checks if selected product is displayed on wishlist page
+
     public boolean isDjiStabilizerVisible() {
         return isDisplayed(djiStabilizerImageCheck);
     }
 
     public void addProductsWishList(){
-        Utils.logInfo("Adding products wish list page");
+        Utils.logInfo("Adding product to wish list");
         closePopUpIfVisible();
         waitForVisibility(djiStabilizer);
         click(djiStabilizer);
-        click(wishListBtn);
-        click(myAccount);
-        click(wishesBtn);
+        click(addToWishListBtn);
+        click(myAccountBtn);
+        click(openWishListPage);
         waitUrlContains("/wishlist/");
     }
 }

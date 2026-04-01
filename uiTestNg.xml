@@ -1,4 +1,4 @@
-<suite name="veliStoreCases">
+<suite name="veli store ui automation suite">
 
     <listeners>
         <listener class-name="ge.store.veli.utils.TestListener"/>
@@ -6,7 +6,7 @@
 
     <test name="Login test">
         <classes>
-            <class name="ge.store.veli.login.LoginTest"/>
+            <class name="ge.store.veli.Login.LoginTest"/>
         </classes>
     </test>
 

@@ -37,7 +37,7 @@ public class ApiManager {
      * @param queryParams request
      * @return API-ის სრული პასუხი
      */
-    public Response getWithQueryParams(String endPoint , Map<String, Object> queryParams) {
+    public Response getWithQueryParam(String endPoint , Map<String, Object> queryParams) {
 
         return  given()
                 .queryParams(queryParams)
@@ -58,7 +58,7 @@ public class ApiManager {
      * @param paramValue path parameter-is მნიშვნელობა
      * @return API-ის სრული პასუხი
      */
-    public Response getWithPathParams(String endPoint , String paramName, int paramValue){
+    public Response getWithPathParam(String endPoint , String paramName, int paramValue){
         return  given()
                 .pathParam(paramName , paramValue)
                 .log().all()
@@ -130,7 +130,6 @@ public class ApiManager {
 
     /**
      * აგზავნის GET request-ს bearer token-ით ავტორიზებულ endpoint-ზე
-     *
      *
      * @param endPoint API endpoint
      * @param token ავტორიზაციის ტოკენი

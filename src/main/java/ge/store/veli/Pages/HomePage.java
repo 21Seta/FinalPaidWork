@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
 
 
     @FindBy(xpath = "//button[contains(@class,'account') and contains(@class,'glass-hover')]")
-    WebElement myAccount;
+    WebElement myAccountBtn;
 
     @FindBy(xpath = "//form[contains(@class, 'SearchForm')]//input")
     WebElement searchField;
@@ -43,12 +43,12 @@ public class HomePage extends BasePage {
     }
 
     public void searchProduct(String productName) {
-        Utils.logInfo("Start searching product: " + productName);
+        Utils.logInfo("searching product: " + productName);
         closePopUpIfVisible();
         click(searchField);
         waitForVisibility(searchField);
         clear(searchField);
-        sendKeys(searchField, productName);
+        sendKeys(searchField, productName , "product name");
         click(takeProduct);
         waitUrlContains("bang-olufsen-beoplay-h95-ferrari-edition-over");
 
@@ -56,19 +56,17 @@ public class HomePage extends BasePage {
 
 
     public void clickVoucher() {
-        Utils.logInfo("Click voucher to transit vouchers page");
         click(vouchers);
     }
 
     public void logOut() {
-        Utils.logInfo("Start log out");
+        Utils.logInfo("Starting logout");
         closePopUpIfVisible();
-        click(myAccount);
+        click(myAccountBtn);
         waitForVisibility(logoutBtn);
         click(logoutBtn);
         waitForVisibility(confirmBtn);
         click(confirmBtn);
     }
-
 
 }

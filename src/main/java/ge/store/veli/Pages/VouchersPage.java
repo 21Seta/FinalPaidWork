@@ -12,19 +12,19 @@ public class VouchersPage extends BasePage {
 
 
     @FindBy(xpath = "(//a[contains(@href, 'VOUCHER-0500')])[1]")
-    WebElement takeVoucher;
+    WebElement voucher;
 
     @FindBy(id = "dg-email")
-    WebElement voucherEmailField;
+    WebElement emailField;
 
     @FindBy(id = "cart-button-z")
-    WebElement addToCart;
+    WebElement addToCartBtn;
 
     @FindBy(id = "cart-button")
-    WebElement openCart;
+    WebElement openCartBtn;
 
     @FindBy(xpath = "//a[contains(@class,'cart')]")
-    WebElement viewBag;
+    WebElement viewBagBtn;
 
     @FindBy(xpath = "//a[contains(@class,'cart')]")
     WebElement openCartPage;
@@ -40,25 +40,25 @@ public class VouchersPage extends BasePage {
     }
 
     public String ifVoucherAddedCartDropDownMenu(){
-        return getText(viewBag);
+        return getText(viewBagBtn);
     }
 
     public String ifVoucherIsAddedInCartPage(){
         return getText(IfVoucherIsAddedInCartPage);
     }
     public void addVoucherInCart(String email){
-        Utils.logInfo("Adding voucher in cart page");
+        Utils.logInfo("Opening vouchers page");
         closePopUpIfVisible();
-        waitForElementToBeClickable(takeVoucher);
-        click(takeVoucher);
-        waitForVisibility(voucherEmailField);
-        sendKeys(voucherEmailField , email);
-        click(addToCart);
-        waitForVisibility(openCart);
-        click(openCart);
+        waitForElementToBeClickable(voucher);
+        click(voucher);
+        waitForVisibility(emailField);
+        sendKeys(emailField , email , "email");
+        click(addToCartBtn);
+        waitForVisibility(openCartBtn);
+        click(openCartBtn);
     }
     public void openCartPage(){
-        Utils.logInfo("Transited on cart page");
+        Utils.logInfo("Opening cart page ");
         click(openCartPage);
     }
 }

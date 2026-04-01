@@ -28,30 +28,13 @@ public class TestListener implements ITestListener {
             Utils.logPass("Test Passed: " + result.getName());
         }
 
-    @Override
-    public void onTestFailure(ITestResult result) {
-        String testName = result.getName();
-        WebDriver driver = DriverManager.getDriver();
+        @Override
+        public void onTestFailure(ITestResult result) {
+            String testName = result.getName();
+            WebDriver driver = DriverManager.getDriver();
+            Utils.logFailed("Test Failed : " +testName , driver , testName);
 
-        String screenshotName = testName + ".png";
-        String directory = System.getProperty("user.dir") + "/report/screenshots/";
-        String fullPath = directory + screenshotName;
-
-        String relativePath = "screenshots/" + screenshotName;
-        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-
-        try {
-            new File(directory).mkdirs();
-
-            FileUtils.copyFile(screenshot, new File(fullPath));
-
-            ExtentReportManager.getTest().fail("Test Failed: " + testName,
-                    MediaEntityBuilder.createScreenCaptureFromPath(relativePath).build());
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-    }
 
         @Override
         public void onTestSkipped(ITestResult result) {
@@ -61,7 +44,6 @@ public class TestListener implements ITestListener {
 
         @Override
         public void onStart(ITestContext context) {
-
             System.out.println("Test Suite Started: " + context.getName());
         }
 

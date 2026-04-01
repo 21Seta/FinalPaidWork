@@ -13,22 +13,22 @@ public class CartPage extends BasePage {
     WebElement djiStabilizer;
 
     @FindBy(id = "cart-button-z")
-    WebElement btnAddToCart;
+    WebElement addToCartBtn;
 
     @FindBy(id = "cart-button")
-    WebElement openCart;
+    WebElement openCartBtn;
 
     @FindBy(xpath = "//a[contains(@class,'cart')]")
-    WebElement viewBag;
+    WebElement viewBagBtn;
 
     @FindBy(xpath = "//div[@class='total']/span[2]")
     WebElement productPriceGetText;
 
     @FindBy(xpath = "//div[@class='end']//button[@class='delete']")
-    WebElement btnDelete;
+    WebElement deleteBtn;
 
     @FindBy(xpath = "//button[@class='remove']")
-    WebElement btnDeleteImmediately;
+    WebElement deleteImmediatelyBtn;
 
     @FindBy(xpath = "//img[@alt='empty cart']")
     WebElement emptyBoxImg;
@@ -39,29 +39,29 @@ public class CartPage extends BasePage {
         super(driver);
         PageFactory.initElements(driver,this);
     }
-    // Returns added product price from cart page
-    public String checkProductIsAddedInCart(){
+
+    public String getAddedProductPrice(){
         return getText(productPriceGetText);
     }
-    // Return Empty Box image , if its visible product is deleted
+
     public boolean checkIfCartIsEmpty(){
         closePopUpIfVisible();
         return isDisplayed(emptyBoxImg);
     }
     public void addProductInCart(){
-        Utils.logInfo("Add product in cart page");
+        Utils.logInfo("Adding product to cart");
         closePopUpIfVisible();
         waitForVisibility(djiStabilizer);
         click(djiStabilizer);
-        click(btnAddToCart);
-        click(openCart);
-        click(viewBag);
+        click(addToCartBtn);
+        click(openCartBtn);
+        click(viewBagBtn);
     }
     public void deleteProductFromCart(){
-        Utils.logInfo("Deleting product from cart page");
+        Utils.logInfo("Deleting product from cart");
         closePopUpIfVisible();
-        click(btnDelete);
-        waitForVisibility(btnDeleteImmediately);
-        click(btnDeleteImmediately);
+        click(deleteBtn);
+        waitForVisibility(deleteImmediatelyBtn);
+        click(deleteImmediatelyBtn);
     }
 }

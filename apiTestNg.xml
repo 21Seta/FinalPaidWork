@@ -1,9 +1,9 @@
-<suite name="api Test suite">
+<suite name="api test suite">
 
-    <Test name="api Tests">
+    <test name="api tests">
         <classes>
             <class name="ge.store.veli.Api.ApiTest"/>
         </classes>
-    </Test>
+    </test>
 
 </suite>

@@ -33,7 +33,7 @@ public class Utils {
         }
     }
     /**
-     * ამატებს წარმატებლობის მესიჯს და scree
+     * ამატებს წარმატებლობის მესიჯს და screenshot-ს
      *
      * @param message წარუმატებლობის მოკლე აღწერა
      * @param driver მიმდინარე WebDriver

@@ -54,7 +54,6 @@ public class HomePage extends BasePage {
 
     }
 
-
     public void clickVoucher() {
         click(vouchers);
     }

@@ -1,7 +1,6 @@
 package ge.store.veli.utils;
 
 
-import com.aventstack.extentreports.MediaEntityBuilder;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

@@ -39,7 +39,6 @@ public class TestListener implements ITestListener {
             String testName = result.getName();
             WebDriver driver = DriverManager.getDriver();
             Utils.logFailed("Test Failed: " + testName , driver , testName);
-
         }
 
     /**

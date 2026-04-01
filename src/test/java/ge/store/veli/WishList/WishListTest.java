@@ -22,7 +22,7 @@ public class WishListTest extends BaseTest {
 
         Assert.assertTrue(driver.getCurrentUrl().contains("/wishlist/"));
 
-        Assert.assertTrue(wishListPage.isDjiStabilizerVisible() , "Product is not added to wish list page");
+        Assert.assertTrue(wishListPage.isDjiStabilizerVisibleOnWishList() , "Product is not added to wish list page");
     }
 
 

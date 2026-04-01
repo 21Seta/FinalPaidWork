@@ -113,7 +113,7 @@ public class ApiTest {
         newUserDetails.put("avatar", ConfigReader.get("api.user.avatar"));
 
         Response createNewUser = api.post("/users" ,  headers, newUserDetails);
-        Assert.assertEquals(createNewUser.getStatusCode(), 400, "API accepted user with invalid email");
+        Assert.assertEquals(createNewUser.getStatusCode(), 400, "API accepted user with invalid email format");
 
         List<String> errorMessage = createNewUser.jsonPath().getList("message");
         Assert.assertTrue(errorMessage.contains("email must be an email") , "Validation message for invalid email format was not returned");

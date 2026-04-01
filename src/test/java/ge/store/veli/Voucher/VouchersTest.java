@@ -4,7 +4,6 @@ import ge.store.veli.Pages.HomePage;
 import ge.store.veli.Pages.VouchersPage;
 import ge.store.veli.BaseTest;
 import ge.store.veli.utils.ConfigReader;
-import ge.store.veli.utils.Utils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

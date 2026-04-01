@@ -31,7 +31,7 @@ public class WishListPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean isDjiStabilizerVisible() {
+    public boolean isDjiStabilizerVisibleOnWishList() {
         return isDisplayed(djiStabilizerImageCheck);
     }
 
